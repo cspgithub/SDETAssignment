@@ -1,5 +1,7 @@
 package tests;
 
+
+
 import org.testng.annotations.AfterMethod;
 
 import org.testng.annotations.BeforeMethod;
@@ -13,8 +15,13 @@ public class baseTest {
   }
 
   @BeforeMethod
-  protected void startBrowser() {
-    Driver.initDriver();
+  protected void startBrowser() throws Exception {
+    try {
+      Driver.initDriver();
+    } catch (Exception e) {
+      closeBrowser();
+    }
+ 
   }
 
   @AfterMethod

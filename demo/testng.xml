@@ -4,8 +4,8 @@
 
   <test name="Regression1" thread-count="2" parallel="true">
     <classes>
-      <class name="tests.First_Test"/>
-      <class name="tests.Second_Test"/>
+      <class name="tests.logInPageTest"/>
+     
      
     </classes>
   </test>
