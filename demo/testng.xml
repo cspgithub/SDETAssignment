@@ -4,7 +4,7 @@
 
   <test name="Regression1" thread-count="2" parallel="true">
     <classes>
-      <class name="tests.logInPageTest"/>
+      <class name="tests.pdpPageTest"/>
      
      
     </classes>
