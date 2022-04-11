@@ -1,8 +1,8 @@
 package pages;
 
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Set;
+
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -46,7 +46,7 @@ public final class pdpPage extends seleniumActions {
 
     }
 
-    private void SwitchTabandClose() {
+    /* private void SwitchTabandClose() {
         Set<String> windows = DriverManager.getDriver().getWindowHandles();
         String mainwindow = DriverManager.getDriver().getWindowHandle();
 
@@ -61,6 +61,6 @@ public final class pdpPage extends seleniumActions {
         }
 
         DriverManager.getDriver().switchTo().window(mainwindow);
-    }
+    } */
 
 }
