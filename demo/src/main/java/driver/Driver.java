@@ -3,7 +3,6 @@ package driver;
 import java.util.Objects;
 
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import utilities.configReader;
@@ -14,19 +13,18 @@ public final class Driver {
 
     }
 
-    String mode;
-
     public static void initDriver() throws Exception {
 
         if (Objects.isNull(DriverManager.getDriver())) {
             WebDriverManager.chromedriver().setup();
-            ChromeOptions options = new ChromeOptions();
-
-            options.addArguments("--no-sandbox");
-            options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--headless");
-
-            DriverManager.setDriver(new ChromeDriver(options));
+            /*
+             * ChromeOptions options = new ChromeOptions();
+             * 
+             * options.addArguments("--no-sandbox");
+             * options.addArguments("--disable-dev-shm-usage");
+             * options.addArguments("--headless");
+             */
+            DriverManager.setDriver(new ChromeDriver());
 
             DriverManager.setDriver(new ChromeDriver());
             DriverManager.getDriver().navigate().to(configReader.getValue("url"));
