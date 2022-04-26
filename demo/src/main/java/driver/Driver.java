@@ -27,7 +27,7 @@ public final class Driver {
             
             DriverManager.setDriver(new ChromeDriver(options));
 
-            DriverManager.setDriver(new ChromeDriver());
+            //DriverManager.setDriver(new ChromeDriver());
             DriverManager.getDriver().navigate().to(configReader.getValue("url"));
             DriverManager.getDriver().manage().window().maximize();
 
