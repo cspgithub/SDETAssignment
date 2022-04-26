@@ -23,6 +23,6 @@ jobs:
         distribution: 'temurin'
        
     - name: Build with Maven
-      run: mvn clean test
+      run: mvn -f 2022-java-seleniumLearning/demo/pom.xml clean test
 
  
