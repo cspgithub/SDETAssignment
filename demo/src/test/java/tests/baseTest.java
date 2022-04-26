@@ -19,7 +19,7 @@ public class baseTest {
     try {
       Driver.initDriver();
     } catch (Exception e) {
-      closeBrowser();
+     // closeBrowser();
     }
  
   }
