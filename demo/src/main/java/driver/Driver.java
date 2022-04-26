@@ -18,16 +18,13 @@ public final class Driver {
 
         if (Objects.isNull(DriverManager.getDriver())) {
             WebDriverManager.chromedriver().setup();
-            
-             ChromeOptions options = new ChromeOptions();
-             
-             options.addArguments("--no-sandbox");
-             options.addArguments("--disable-dev-shm-usage");
-             options.addArguments("--headless");
-            
-            DriverManager.setDriver(new ChromeDriver(options));
+            ChromeOptions options = new ChromeOptions();
 
-            //DriverManager.setDriver(new ChromeDriver());
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--headless");
+
+            DriverManager.setDriver(new ChromeDriver(options));
             DriverManager.getDriver().navigate().to(configReader.getValue("url"));
             DriverManager.getDriver().manage().window().maximize();
 
