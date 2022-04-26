@@ -23,6 +23,6 @@ jobs:
         distribution: 'temurin'
        
     - name: Build with Maven
-      run: mvn -f demo/pom.xml clean compile
+      run: mvn -f demo/pom.xml clean verify
 
  
