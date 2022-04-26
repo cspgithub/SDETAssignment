@@ -2,6 +2,9 @@ package pages;
 
 import java.time.Duration;
 
+import java.util.List;
+import java.util.Set;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -13,43 +16,43 @@ import driver.DriverManager;
 
 public class seleniumActions {
 
-    protected WebElement getWebElement(By by) {
-        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(30));
-        return wait.until(ExpectedConditions.presenceOfElementLocated(by));
+    String originalWindowHandle;
+    Set<String> windowhandle;
 
-        // Waiting 30 seconds for an element to be present on the page, checking
-        // for its presence once every 5 seconds.
-        /*
-         * Wait<WebDriver> wait = new
-         * FluentWait<WebDriver>(DriverManager.getDriver()).withTimeout(Duration.
-         * ofSeconds(15))
-         * .pollingEvery(Duration.ofSeconds(5)).ignoring(NoSuchElementException.class);
-         * 
-         * WebElement webElement = wait.until(new Function<WebDriver, WebElement>() {
-         * public WebElement apply(WebDriver driver) {
-         * return driver.findElement(by);
-         * }
-         * });
-         */
+    protected void sleep(int sleep) {
+
+        try {
+            Thread.sleep(sleep);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected WebElement getWebElement(By by) {
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(45));
+        return wait.until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+
+    protected List<WebElement> getListOfWebElements(By by) {
+
+        return DriverManager.getDriver().findElements(by);
 
     }
+
+    protected boolean isWebElementDisplayed(By by) {
+        return getWebElement(by).isDisplayed();
+
+    }
+
     protected WebElement getWebElementByVisiblity(WebElement elemnt) {
-        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(30));
         return wait.until(ExpectedConditions.visibilityOf(elemnt));
-
-        
-
     }
 
     protected void click(By by) {
 
         getWebElement(by).click();
 
-    }
-
-    protected void jsclick(WebElement element) {
-        JavascriptExecutor executor = (JavascriptExecutor) DriverManager.getDriver();
-        executor.executeScript("arguments[0].click();", element);
     }
 
     protected void type(By by, String value) {
@@ -60,11 +63,41 @@ public class seleniumActions {
 
     protected void selctValuesFromDropdown(By parentBy, String value) {
 
-        // DriverManager.getDriver().findElement(parentBy).click();
-
-        Select objSelect = new Select(DriverManager.getDriver().findElement(parentBy));
+        Select objSelect = new Select(getWebElement(parentBy));
         objSelect.selectByValue(value);
 
+    }
+
+    protected void jsClick(By by) {
+
+        JavascriptExecutor executor = (JavascriptExecutor) DriverManager.getDriver();
+        // executor.executeScript("arguments[0].scrollIntoView(true);",
+        // getWebElement(by));
+        executor.executeScript("arguments[0].click();", getWebElement(by));
+
+    }
+
+    protected void switchToNewTab() {
+        originalWindowHandle = DriverManager.getDriver().getWindowHandle();
+        windowhandle = DriverManager.getDriver().getWindowHandles();
+        for (String windowHandle : windowhandle) {
+
+            if (!originalWindowHandle.contentEquals(windowHandle)) {
+                DriverManager.getDriver().switchTo().window(windowHandle);
+            }
+
+        }
+    }
+
+    protected void switchToParentWindow() {
+        //DriverManager.getDriver().close();
+        DriverManager.getDriver().switchTo().window(originalWindowHandle);
+        
+    }
+
+    protected String getTitle() {
+        String title = DriverManager.getDriver().getTitle();
+        return title;
     }
 
 }
