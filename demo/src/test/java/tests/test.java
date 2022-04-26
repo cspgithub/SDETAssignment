@@ -18,10 +18,9 @@ public class test extends baseTest {
 
     productPage obj1 = new productPage();
     obj1.SelectBrandAndFilterByPrice();
-    
 
     assertEquals("About this item", obj1.getSecondLargestPricedProduct());
-    
+
     System.out.println(obj1.printAllAboutThisContent());
 
   }
