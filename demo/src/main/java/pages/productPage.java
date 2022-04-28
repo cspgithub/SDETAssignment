@@ -82,6 +82,7 @@ public class productPage extends seleniumActions {
 
             switchToNewTab();
             actualVerficationtext = getWebElement(aboutThisItem).getText().trim();
+            switchToParentWindow();
 
         }
         return actualVerficationtext;

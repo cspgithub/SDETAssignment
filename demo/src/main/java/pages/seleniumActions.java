@@ -16,8 +16,9 @@ import driver.DriverManager;
 
 public class seleniumActions {
 
-    String originalWindowHandle;
-    Set<String> windowhandle;
+    String parentTabhandel;
+    Set<String> allhandles;
+    String newTabhandle;
 
     protected void sleep(int sleep) {
 
@@ -78,21 +79,26 @@ public class seleniumActions {
     }
 
     protected void switchToNewTab() {
-        originalWindowHandle = DriverManager.getDriver().getWindowHandle();
-        windowhandle = DriverManager.getDriver().getWindowHandles();
-        for (String windowHandle : windowhandle) {
+        parentTabhandel = DriverManager.getDriver().getWindowHandle();
+        allhandles = DriverManager.getDriver().getWindowHandles();
+        for (String handel : allhandles) {
+            newTabhandle = handel;
 
-            if (!originalWindowHandle.contentEquals(windowHandle)) {
-                DriverManager.getDriver().switchTo().window(windowHandle);
+            if (!parentTabhandel.contentEquals(newTabhandle)) {
+                DriverManager.getDriver().switchTo().window(newTabhandle);
             }
 
         }
     }
 
     protected void switchToParentWindow() {
-        //DriverManager.getDriver().close();
-        DriverManager.getDriver().switchTo().window(originalWindowHandle);
-        
+
+        DriverManager.getDriver().close();
+        System.out.println("succdssfully closed new tab  " + newTabhandle);
+        sleep(6000);
+        DriverManager.getDriver().switchTo().window(parentTabhandel);
+        System.out.println("succdssfully focus changed to paremt tab " + parentTabhandel);
+
     }
 
     protected String getTitle() {

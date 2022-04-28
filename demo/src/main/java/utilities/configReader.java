@@ -19,7 +19,7 @@ public final class configReader {
         Properties prop = new Properties();
         FileInputStream fi = new FileInputStream(frameworkConstants.getConfigPath());
         prop.load(fi);
-        value = prop.getProperty(keyName).trim();
+        value = prop.getProperty(keyName).toLowerCase().trim();
         if (Objects.isNull(value)) {
 
             throw new Exception("property named : " + keyName + "  not found");
