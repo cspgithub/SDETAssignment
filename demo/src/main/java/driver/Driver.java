@@ -1,14 +1,19 @@
 package driver;
 
-
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 import java.util.Objects;
 
-
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 //import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import enums.execution;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -60,7 +65,9 @@ public final class Driver {
                 WebDriverManager.chromedriver().setup();
                 // System.setProperty("webdriver.chrome.driver",
                 // FrameworkConstants.getChromedriverpath());
-                driver = new ChromeDriver();
+                ChromeOptions options = new ChromeOptions();
+                options.setHeadless(true);
+                driver = new ChromeDriver(options);
                 break;
 
             case "firefox":
@@ -80,7 +87,37 @@ public final class Driver {
 
     }
 
-    private static void createRemoteDriver(String browser) {
+    private static void createRemoteDriver(String browser) throws MalformedURLException, Exception {
+
+        DesiredCapabilities capability = new DesiredCapabilities();
+
+        switch (browser) {
+            case "chrome":
+
+                ChromeOptions options = new ChromeOptions();
+                options.setHeadless(true);
+                capability.merge(options);
+                break;
+
+            case "firefox":
+
+                capability.setBrowserName("firefox");
+                FirefoxOptions foptions = new FirefoxOptions();
+                foptions.setHeadless(false);
+                System.out.println(foptions.getBrowserName());
+                capability.merge(foptions);
+                break;
+
+            default:
+                System.out.println("Invalid browser passed :" + browser);
+                break;
+        }
+        capability.setPlatform(Platform.ANY);
+        driver = new RemoteWebDriver(new URL(configReader.getValue("remoteurl")), capability);
+        DriverManager.setDriver(driver);
+        DriverManager.getDriver().manage().deleteAllCookies();
+        DriverManager.getDriver().get(configReader.getValue("url"));
+
     }
 
     public static void closeDriver() {
