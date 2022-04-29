@@ -1,5 +1,6 @@
 package driver;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -66,7 +67,7 @@ public final class Driver {
                 // System.setProperty("webdriver.chrome.driver",
                 // FrameworkConstants.getChromedriverpath());
                 ChromeOptions options = new ChromeOptions();
-                options.setHeadless(true);
+                options.setHeadless(true); 
                 driver = new ChromeDriver(options);
                 break;
 
@@ -93,9 +94,12 @@ public final class Driver {
 
         switch (browser) {
             case "chrome":
-
+                capability.setBrowserName("chrome");
                 ChromeOptions options = new ChromeOptions();
-                options.setHeadless(true);
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
+                options.addArguments("--headless");
+
                 capability.merge(options);
                 break;
 
@@ -116,6 +120,8 @@ public final class Driver {
         driver = new RemoteWebDriver(new URL(configReader.getValue("remoteurl")), capability);
         DriverManager.setDriver(driver);
         DriverManager.getDriver().manage().deleteAllCookies();
+        DriverManager.getDriver().manage().window().maximize();
+        DriverManager.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         DriverManager.getDriver().get(configReader.getValue("url"));
 
     }
@@ -132,6 +138,22 @@ public final class Driver {
             DriverManager.unloaDriver();
         }
 
+    }
+
+    public static void setUpDocker() throws IOException, InterruptedException, Exception {
+        if (configReader.getValue("executionmode").equalsIgnoreCase("remote")) {
+            Runtime runtime = Runtime.getRuntime();
+            runtime.exec("cmd /c start dockerUp.bat");
+            Thread.sleep(1000);
+
+        }
+
+    }
+
+    public static void closeDocker() throws IOException {
+        Runtime runtime = Runtime.getRuntime();
+        runtime.exec("cmd /c start dockerClose.bat");
+        runtime.exec("taskkill /f /im cmd.exe");
     }
 
 }

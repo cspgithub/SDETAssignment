@@ -81,8 +81,11 @@ public class productPage extends seleniumActions {
         if (!getTitle().matches(secondHighestPriceproductName)) {
 
             switchToNewTab();
+
+            scrollToWebElement(aboutThisItem);
             actualVerficationtext = getWebElement(aboutThisItem).getText().trim();
-            switchToParentWindow();
+
+            
 
         }
         return actualVerficationtext;
@@ -97,6 +100,7 @@ public class productPage extends seleniumActions {
             actualContent.add(webElement.getText());
 
         }
+      
         return actualContent;
 
     }

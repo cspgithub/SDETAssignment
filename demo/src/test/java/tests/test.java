@@ -21,7 +21,7 @@ public class test extends baseTest {
 
     assertEquals("About this item", obj1.getSecondLargestPricedProduct());
 
-   // System.out.println(obj1.printAllAboutThisContent());
+    System.out.println(obj1.printAllAboutThisContent());
 
   }
 

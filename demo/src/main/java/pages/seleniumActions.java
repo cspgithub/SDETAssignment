@@ -34,8 +34,16 @@ public class seleniumActions {
         return wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
-    protected List<WebElement> getListOfWebElements(By by) {
+    protected void scrollToWebElement(By by) {
 
+        JavascriptExecutor executor = (JavascriptExecutor) DriverManager.getDriver();
+        executor.executeScript("arguments[0].scrollIntoView(true);",
+                getWebElement(by));
+
+    }
+
+    protected List<WebElement> getListOfWebElements(By by) {
+    
         return DriverManager.getDriver().findElements(by);
 
     }

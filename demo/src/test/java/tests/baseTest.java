@@ -2,9 +2,12 @@ package tests;
 
 
 
-import org.testng.annotations.AfterMethod;
+import java.io.IOException;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
 import driver.Driver;
@@ -14,6 +17,13 @@ public class baseTest {
   protected baseTest() {
 
   }
+
+
+  @BeforeSuite
+	public void start() throws Exception {
+		Driver.setUpDocker();
+		
+	}
 	@Parameters("browser")
   @BeforeMethod
   protected void startBrowser(String browser) throws Exception {
@@ -29,5 +39,10 @@ public class baseTest {
   protected void closeBrowser() {
     Driver.closeDriver();
   }
+
+  @AfterSuite
+	public void CloseD() throws IOException {
+		Driver.closeDocker();
+	}
 
 }
