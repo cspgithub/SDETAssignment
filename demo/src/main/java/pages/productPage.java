@@ -12,9 +12,8 @@ public class productPage extends seleniumActions {
     By section = By.xpath(
             "//div[@class='a-section a-spacing-none apb-browse-refinements']//div[@class='a-section a-spacing-small']/span[text()='Brands']");// brand
 
-    By sectionItemCheckbox = By.xpath(
-            "//div[@class='a-section a-spacing-none apb-browse-refinements']//div[@class='a-section a-spacing-small']/span[text()='Brands']/following::ul/li//span[text()='Samsung']/..//input[@type='checkbox']");// Samsung
-
+    By sectionItemCheckbox = By.cssSelector(
+            "[id=s-refinements] > div:nth-child(17) > ul > li:nth-child(4) > span > a > div > label > i");
     By dropDownSelectForFilter = By.xpath(
             "//div[@class='a-section a-spacing-small a-spacing-top-small a-text-right']/form[@class='aok-inline-block a-spacing-none']//select[@class='a-native-dropdown a-declarative']");// Samsung
 
@@ -85,8 +84,6 @@ public class productPage extends seleniumActions {
             scrollToWebElement(aboutThisItem);
             actualVerficationtext = getWebElement(aboutThisItem).getText().trim();
 
-            
-
         }
         return actualVerficationtext;
 
@@ -100,7 +97,7 @@ public class productPage extends seleniumActions {
             actualContent.add(webElement.getText());
 
         }
-      
+
         return actualContent;
 
     }

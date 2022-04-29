@@ -4,11 +4,11 @@ import org.openqa.selenium.By;
 
 public class homepage extends seleniumActions{
 
-    private By hmaBurgerMenu = By.xpath("//div[@class='nav-left']/a[@id='nav-hamburger-menu']");//All
+    private By hmaBurgerMenu = By.cssSelector("[id=nav-hamburger-menu] > span");//All
 
-    private By hmenuitemhmenutitle  = By.xpath("//div[@id='hmenu-content']/ul/li/div[@class='hmenu-item hmenu-title '][text()='shop by department']/following::div[text()='TV, Appliances, Electronics']/..");//TV, Appliances, Electronics
+    private By hmenuitemhmenutitle  = By.cssSelector("[id=hmenu-content] > ul.hmenu.hmenu-visible > li:nth-child(16) > a > i");//TV, Appliances, Electronics
 
-    private By hmenuitem  = By.xpath("//div[@id='hmenu-content']/ul/li/div[@class='hmenu-item hmenu-title '][text()='tv, audio & cameras']/following::a[text()='Televisions']");//Televisions
+    private By hmenuitem  = By.cssSelector("[id=hmenu-content] > ul.hmenu.hmenu-visible.hmenu-translateX > li:nth-child(3) > a");//Televisions
 
 
 

@@ -1,7 +1,5 @@
 package tests;
 
-
-
 import java.io.IOException;
 
 import org.testng.annotations.AfterMethod;
@@ -18,21 +16,21 @@ public class baseTest {
 
   }
 
+  /* @BeforeSuite
+  public void start() throws Exception {
+    Driver.setUpDocker();
 
-  @BeforeSuite
-	public void start() throws Exception {
-		Driver.setUpDocker();
-		
-	}
-	@Parameters("browser")
+  } */
+
+  @Parameters("browser")
   @BeforeMethod
   protected void startBrowser(String browser) throws Exception {
     try {
       Driver.initDriver(browser);
     } catch (Exception e) {
-     // closeBrowser();
+      // closeBrowser();
     }
- 
+
   }
 
   @AfterMethod
@@ -40,9 +38,9 @@ public class baseTest {
     Driver.closeDriver();
   }
 
-  @AfterSuite
-	public void CloseD() throws IOException {
-		Driver.closeDocker();
-	}
+  /* @AfterSuite
+  public void CloseD() throws IOException {
+    Driver.closeDocker();
+  } */
 
 }

@@ -67,7 +67,7 @@ public final class Driver {
                 // System.setProperty("webdriver.chrome.driver",
                 // FrameworkConstants.getChromedriverpath());
                 ChromeOptions options = new ChromeOptions();
-                options.setHeadless(true); 
+                options.setHeadless(true);
                 driver = new ChromeDriver(options);
                 break;
 
@@ -99,6 +99,7 @@ public final class Driver {
                 options.addArguments("--no-sandbox");
                 options.addArguments("--disable-dev-shm-usage");
                 options.addArguments("--headless");
+                System.out.println(options.getBrowserName());
 
                 capability.merge(options);
                 break;
@@ -107,7 +108,7 @@ public final class Driver {
 
                 capability.setBrowserName("firefox");
                 FirefoxOptions foptions = new FirefoxOptions();
-                foptions.setHeadless(false);
+                foptions.setHeadless(true);
                 System.out.println(foptions.getBrowserName());
                 capability.merge(foptions);
                 break;
@@ -144,7 +145,7 @@ public final class Driver {
         if (configReader.getValue("executionmode").equalsIgnoreCase("remote")) {
             Runtime runtime = Runtime.getRuntime();
             runtime.exec("cmd /c start dockerUp.bat");
-            Thread.sleep(1000);
+            Thread.sleep(45000);
 
         }
 
