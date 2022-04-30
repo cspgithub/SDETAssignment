@@ -39,8 +39,3 @@ ADD . /app
 
 CMD  mvn -f demo/pom.xml clean test
 
-EXPOSE 4444
-
-#RUN mvn clean compile
-
-#CMD mvn -f demo/pom.xml clean verify

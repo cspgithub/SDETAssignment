@@ -99,6 +99,8 @@ public final class Driver {
                 options.addArguments("--no-sandbox");
                 options.addArguments("--disable-dev-shm-usage");
                 options.addArguments("--headless");
+                options.addArguments("--disable-gpu");
+                options.addArguments("--remote-debugin-port=9222");
                 System.out.println(options.getBrowserName());
 
                 capability.merge(options);
