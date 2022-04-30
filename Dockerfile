@@ -38,6 +38,7 @@ WORKDIR /app
 ADD . /app
 
 RUN  mvn -f demo/pom.xml clean test
+#RUN  -d --network="host" image-name
 
 #RUN mvn clean compile
 
