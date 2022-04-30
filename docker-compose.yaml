@@ -1,28 +1,23 @@
 version: "3"
 services:
   selenium-hub:
-  image: selenium/hub
-  environment:
-    - GRID_TIMEOUT=120
-    - GRID_MAX_SESSION=200
-    - GRID_NEW_SESSION_WAIT_TIMEOUT=-1
-    - GRID_BROWSER_TIMEOUT=120
-  ports:
-    - "4444:4444"
-
+    image: selenium/hub:latest
+    container_name: selenium-hub
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"
   chrome:
-    image: selenium/node-chrome
-    links:
-      - selenium-hub:hub
-    dns:
-      - 8.8.8.8
-      - 208.67.222.222
-    environment:
-      - NODE_MAX_INSTANCES=100
-      - NODE_MAX_SESSION=100
+    image: selenium/node-chrome:latest
     volumes:
       - /dev/shm:/dev/shm
-    privileged: true
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4444
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4444
+      - SE_NODE_MAX_SESSIONS=5
 
      
   automation:
