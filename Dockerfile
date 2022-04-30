@@ -41,4 +41,4 @@ RUN  mvn -f demo/pom.xml clean compile
 
 #RUN mvn clean compile
 
-#CMD mvn clean verify
+CMD mvn clean verify
