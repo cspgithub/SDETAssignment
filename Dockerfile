@@ -38,7 +38,8 @@ WORKDIR /app
 ADD . /app
 
 RUN  mvn -f demo/pom.xml clean test
-CMD  -d --network="host" image-name
+
+EXPOSE 4444
 
 #RUN mvn clean compile
 
