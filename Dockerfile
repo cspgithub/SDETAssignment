@@ -37,5 +37,5 @@ WORKDIR /app
 
 ADD . /app
 
-CMD  mvn -f demo/pom.xml clean test
+RUN  mvn -f demo/pom.xml clean test
 
