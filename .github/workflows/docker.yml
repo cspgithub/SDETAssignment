@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/checkout@v2
-    - name: Run docker-compose 
-      run: docker-compose up --exit-code-from automation
+    - name: Run docker-compose
+      run: docker-compose -f docker-compose.yaml up --exit-code-from automation
    
     
