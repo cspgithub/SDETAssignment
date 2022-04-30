@@ -41,4 +41,4 @@ ADD . /app
 
 #RUN mvn clean compile
 
-CMD mvn clean verify
+CMD mvn -f demo/pom.xml test
