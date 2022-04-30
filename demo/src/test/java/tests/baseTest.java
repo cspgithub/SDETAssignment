@@ -15,12 +15,12 @@ public class baseTest {
   }
 
   
-  /*  @BeforeSuite
+ /*  @BeforeSuite
     public void start() throws Exception {
     Driver.setUpDocker();
     
    }
-   */
+    */
 
   @Parameters("browser")
   @BeforeMethod
@@ -42,7 +42,7 @@ public class baseTest {
   /*  @AfterSuite
    public void CloseD() throws Exception {
     Driver.closeDocker();
-   }
-   */
+   } */
+   
 
 }

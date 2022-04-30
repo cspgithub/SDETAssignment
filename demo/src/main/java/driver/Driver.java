@@ -145,7 +145,7 @@ public final class Driver {
         if (configReader.getValue("executionmode").equalsIgnoreCase("remote")) {
             Runtime runtime = Runtime.getRuntime();
             runtime.exec("cmd /c start dockerUp.bat");
-            Thread.sleep(45000);
+            Thread.sleep(90000);
 
         }
 
