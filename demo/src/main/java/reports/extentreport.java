@@ -19,7 +19,7 @@ public final class extentreport {
 
         if (Objects.isNull(extent)) {
             extent = new ExtentReports();
-            String extentReportFile = "automation-index.html";
+            String extentReportFile = "result/automation-index.html";
             ExtentSparkReporter spark = new ExtentSparkReporter(extentReportFile);
             extent.attachReporter(spark);
             spark.config().setReportName("sdetexecutionreport");
