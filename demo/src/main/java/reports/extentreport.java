@@ -19,8 +19,8 @@ public final class extentreport {
 
         if (Objects.isNull(extent)) {
             extent = new ExtentReports();
-            String extentReportFile = "result/automation-index.html";
-            ExtentSparkReporter spark = new ExtentSparkReporter(extentReportFile);
+            String userDir = System.getProperty("user.dir") + "/src/test/java/report";
+            ExtentSparkReporter spark = new ExtentSparkReporter(userDir);
             extent.attachReporter(spark);
             spark.config().setReportName("sdetexecutionreport");
             spark.config().setTheme(Theme.STANDARD);
