@@ -1,5 +1,5 @@
 # SDETAssignment
-####Dockerized 
+### Dockerized 
 # 1st Approach:
 1. Access/Visit https://github.com/cspgithub/SDETAssignment/actions
 2. Click Java CI with Maven - Manual Trigger under Workflows
