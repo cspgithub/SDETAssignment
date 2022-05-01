@@ -21,7 +21,7 @@ public class test extends baseTest {
         .getSecondHighestPrice()
         .openSecondHighestPriceProductDeatilsPage().getActualVerficationText();
 
-    assertEquals("Aboutttttt this item", actualText);
+    assertEquals("About this item", actualText);
     productPage.printAllAboutThisContent();
 
   }
