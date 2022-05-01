@@ -1,8 +1,8 @@
 version: "3"
 services:
-  selenium-hub:
+  seleniumhub:
     image: selenium/hub:latest
-    container_name: selenium-hub
+    container_name: seleniumhub
     ports:
       - "4442:4442"
       - "4443:4443"
@@ -12,7 +12,7 @@ services:
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
-      - selenium-hub
+      - seleniumhub
     environment:
       - SE_EVENT_BUS_HOST=selenium-hub
       - SE_EVENT_BUS_PUBLISH_PORT=4444
@@ -26,7 +26,7 @@ services:
     build: .
     shm_size: 2gb
     depends_on:
-      - selenium-hub
+      - seleniumhub
       - chrome
     environment:
-      - HOST_NAME=selenium-hub
+      - HOST_NAME=seleniumhub
