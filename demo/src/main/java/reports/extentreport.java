@@ -24,7 +24,8 @@ public final class extentreport {
             String userDir = System.getProperty("user.dir") + "/src/test/java/report";
             ExtentSparkReporter spark = new ExtentSparkReporter(userDir);
             extent.attachReporter(spark);
-            spark.config().setReportName("sdetexecution-report"+" on "+ configReader.getValue("executionmode")+"environemnt");
+            spark.config().setReportName(
+                    "sdetexecution-report" + " on " + configReader.getValue("executionmode") + "environemnt");
             spark.config().setTheme(Theme.STANDARD);
         }
 
