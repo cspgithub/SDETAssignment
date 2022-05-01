@@ -14,14 +14,6 @@ public class baseTest {
 
   }
 
-  /*
-   * @BeforeSuite
-   * public void start() throws Exception {
-   * Driver.setUpDocker();
-   * 
-   * }
-   */
-
   @Parameters("browser")
   @BeforeMethod
   protected void startBrowser(String browser) throws Exception {
@@ -37,12 +29,5 @@ public class baseTest {
   protected void closeBrowser() {
     Driver.closeDriver();
   }
-
-  /*
-   * @AfterSuite
-   * public void CloseD() throws Exception {
-   * Driver.closeDocker();
-   * }
-   */
 
 }

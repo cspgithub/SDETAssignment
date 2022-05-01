@@ -2,14 +2,10 @@
 
 <suite name="Suite1" verbose="1" thread-count="4" parallel="tests">
 
-   <!--  <test name="FirefoxTest">
-        <parameter name="browser" value="firefox"/>
-        <classes>
-
-            <class name="tests.test"/>
-
-        </classes>
-    </test>  -->
+   <listeners>
+		<listener class-name="listeners.reportListener" />
+		<!-- <listener class-name="com.workflow.dcp.utility.AnnotationTransformer" /> -->
+	</listeners>
 
     <test name="ChromeTest">
         <parameter name="browser" value="chrome"/>

@@ -35,9 +35,6 @@ services:
     environment:
       - HOST_NAME=selenium-hub
     volumes:
-      - ./reporter:/app/reporter
+      - ./:/app/automation-index.html
 
 
-
-      # Make sure to run using below command `docker-compose up --exit-code-from automation`
-      # `--exit-code-from automation` command will exist all service if automation exits 
