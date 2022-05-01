@@ -1,6 +1,7 @@
 package tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.testng.annotations.Test;
 
@@ -10,18 +11,18 @@ import pages.productPage;
 public class test extends baseTest {
 
   @Test
-  public void verifyTitlrOfproduct() {
+  public void verifyAboutThisItemForProduct() {
 
-    homepage obj = new homepage();
-    obj.clickHamburgerMenu()
-        .productPageLoaded();
+    homepage homepage = new homepage();
+    assertTrue(homepage.clickHamburgerMenuOnHomePage().isProductPageLoaded());
 
-    productPage obj1 = new productPage();
-    obj1.SelectBrandAndFilterByPrice();
+    productPage productPage = new productPage();
+    String actualText= productPage.filterProductsByPriceHighToLow()
+        .getSecondHighestPrice()
+        .openSecondHighestPriceProductDeatilsPage().getActualVerficationText();
 
-    assertEquals("About this item", obj1.getSecondLargestPricedProduct());
-
-    System.out.println(obj1.printAllAboutThisContent());
+    assertEquals("About this item", actualText);
+    productPage.printAllAboutThisContent();
 
   }
 

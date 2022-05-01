@@ -30,17 +30,21 @@ public class productPage extends seleniumActions {
     By aboutThisItemContent = By.xpath(
             "//div[@class='a-section a-spacing-medium a-spacing-top-small']/h1[@class='a-size-base-plus a-text-bold']/following::ul[@class='a-unordered-list a-vertical a-spacing-mini']/li/span");
 
-    String secondHighestPriceproductName;
+    private static String secondHighestPriceproductName;
 
-    String actualVerficationtext;
+    private static String actualVerficationtext;
 
-    public productPage productPageLoaded() {
-        isWebElementDisplayed(section);
-        return this;
+    private static List<WebElement> pricelistWebElements;
 
+    private static List<Integer> pricelist;
+
+    private static int secondlargestprceValue;
+
+    public boolean isProductPageLoaded() {
+       return  isWebElementDisplayed(section);
     }
 
-    public void SelectBrandAndFilterByPrice() {
+    public productPage filterProductsByPriceHighToLow() {
 
         jsClick(sectionItemCheckbox);
 
@@ -50,40 +54,46 @@ public class productPage extends seleniumActions {
             sleep(2000);
 
         }
+        return this;
 
     }
 
-    public String getSecondLargestPricedProduct() {
+    public productPage getSecondHighestPrice() {
 
-        List<WebElement> pricelistWebElements = getListOfWebElements(priceOfProduct);
-        List<Integer> pricelist = new ArrayList<>();
+        pricelistWebElements = getListOfWebElements(priceOfProduct);// storing all webelements -price
+        pricelist = new ArrayList<>();// storing all price as int
 
         for (WebElement webElement : pricelistWebElements) {
             pricelist.add(Integer.parseInt(webElement.getText().toString().replace(",", "")));
         }
-        int[] array = pricelist.stream().mapToInt(i -> i).toArray();
+        // finding 2nd largest price from pricelist
+        int[] array = pricelist.stream().mapToInt(i -> i).toArray();//converting arraylist to array
         int total = array.length;
         Arrays.sort(array);
-        int secondlargestprceValue = array[total - 2];
+        secondlargestprceValue = array[total - 2];//after sorting in ascending order it will give 2nd index item which is 2nd higest price
+        return this;
+
+    }
+
+    public productPage openSecondHighestPriceProductDeatilsPage() {
         for (WebElement el : pricelistWebElements) {
             if (Integer.parseInt(el.getText().toString().replace(",", "")) == secondlargestprceValue) {
                 secondHighestPriceproductName = el.findElement(nameOfProduct).getText();
                 el.click();
                 break;
-
             }
-
         }
+        return this;
+    }
+
+    public String getActualVerficationText() {
 
         sleep(3000);
 
         if (!getTitle().matches(secondHighestPriceproductName)) {
-
             switchToNewTab();
-
             scrollToWebElement(aboutThisItem);
             actualVerficationtext = getWebElement(aboutThisItem).getText().trim();
-
         }
         return actualVerficationtext;
 

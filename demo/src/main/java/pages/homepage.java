@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 public class homepage extends seleniumActions{
 
-    private By hmaBurgerMenu = By.cssSelector("[id=nav-hamburger-menu] > span");//All
+    private By hamBurgerMenu = By.cssSelector("[id=nav-hamburger-menu] > span");//All
 
     private By hmenuitemhmenutitle  = By.cssSelector("[id=hmenu-content] > ul.hmenu.hmenu-visible > li:nth-child(16) > a > i");//TV, Appliances, Electronics
 
@@ -12,9 +12,9 @@ public class homepage extends seleniumActions{
 
 
 
-    public productPage clickHamburgerMenu(){
+    public productPage clickHamburgerMenuOnHomePage(){
 
-        click(hmaBurgerMenu);
+        click(hamBurgerMenu);
         sleep(2000);
         click(hmenuitemhmenutitle);
         jsClick(hmenuitem);
