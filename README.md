@@ -6,6 +6,9 @@
 3. Click /Run Run Workflow
 4. Click the latest run and see the excution report under Artifacts section
 
+![githubactions](https://user-images.githubusercontent.com/28858542/166144072-32a471af-5754-481d-9d84-39c4da10f968.PNG)
+
+
 
 # 2nd Approach:
 
