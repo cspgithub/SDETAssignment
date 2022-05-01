@@ -34,7 +34,7 @@ services:
       - chrome
     environment:
       - HOST_NAME=selenium-hub
-    volumes:
-      - ./:/app/automation-index.html
+    #volumes:
+      #- ./:/app/automation-index.html
 
 
