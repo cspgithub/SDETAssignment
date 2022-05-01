@@ -19,3 +19,9 @@ jobs:
     - name: Run docker-compose
       run: docker-compose up --exit-code-from automation
     
+    - name: upload artifacts
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: htmlreports
+        path: src/test/java/report/Index.html
