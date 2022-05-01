@@ -1,5 +1,5 @@
 # SDETAssignment
-
+####Dockerized 
 # 1st Approach:
 1. Access/Visit https://github.com/cspgithub/SDETAssignment/actions
 2. Click Java CI with Maven - Manual Trigger under Workflows
@@ -22,3 +22,8 @@
 4. Access https://github.com/cspgithub/SDETAssignment/actions
 5. Click the latest run and see the excution report under Artifacts section
 
+# Project Structure
+![image](https://user-images.githubusercontent.com/28858542/166144189-79e3157e-0bb6-47c6-9f31-4e05a9f6878b.png)
+![image](https://user-images.githubusercontent.com/28858542/166144208-1b51e160-8618-4dc2-9941-c2eb0f13d028.png)
+![image](https://user-images.githubusercontent.com/28858542/166144222-8fb269c9-e531-4b44-ad42-21b5eac7ff0b.png)
+![image](https://user-images.githubusercontent.com/28858542/166144240-13a45747-4c35-40fe-8d85-bb9de4b9200d.png)
