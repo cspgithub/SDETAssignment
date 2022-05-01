@@ -39,7 +39,6 @@ ADD . /app
 
 CMD  mvn -f demo/pom.xml clean test
 
-COPY . .
 
 
 
