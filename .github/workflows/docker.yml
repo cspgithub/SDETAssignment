@@ -22,6 +22,8 @@ jobs:
     - name: upload artifacts
       if: always()
       uses: actions/upload-artifact@v2
+      run: mkdir -p demo/src/test/java/report
+      run: echo hello > demo/src/test/java/report/Index.html
       with:
         name: htmlreports
         path: demo/src/test/java/report/Index.html
