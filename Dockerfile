@@ -1,4 +1,4 @@
-FROM java:latest
+FROM openjdk:11
 FROM maven:alpine
 
 WORKDIR /app
