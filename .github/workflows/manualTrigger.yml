@@ -4,9 +4,6 @@
 name: Java CI with Maven - Manual Trigger
 
 on: 
- schedule:
-    - cron: "21 21 * * *"
-
   workflow_dispatch
  
 jobs:
