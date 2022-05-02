@@ -4,8 +4,8 @@ FROM maven:alpine
 WORKDIR /app
 ADD . /app
 
-RUN mvn clean compile
+RUN  mvn -f demo/pom.xml clean compile
 
-CMD mvn test
+CMD  mvn -f demo/pom.xml test
 
 
