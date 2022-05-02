@@ -6,17 +6,13 @@ name: Java CI with Maven - Manual Trigger
 on: 
   workflow_dispatch
  
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
     steps:
-    - name: Setup timezone
-      uses: zcong1993/setup-timezone@master
-      with:
-      timezone: Asia/Shanghai
-
     - uses: actions/checkout@v3
     - name: Run docker-compose
       run: docker-compose up --exit-code-from automation
