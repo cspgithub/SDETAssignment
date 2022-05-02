@@ -1,38 +1,19 @@
-#FROM ubuntu:latest
-FROM alpine:3.14
+FROM java:8-alpine
 
-# Install required dependencies
-RUN apk update
-RUN apk add -y wget unzip curl dpkg
+RUN apk add --update ca-certificates && rm -rf /var/cache/apk/* && \
+  find /usr/share/ca-certificates/mozilla/ -name "*.crt" -exec keytool -import -trustcacerts \
+  -keystore /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts -storepass changeit -noprompt \
+  -file {} -alias {} \; && \
+  keytool -list -keystore /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts --storepass changeit
 
+ENV MAVEN_VERSION 3.5.4
+ENV MAVEN_HOME /usr/lib/mvn
+ENV PATH $MAVEN_HOME/bin:$PATH
 
-# Install Chrome for Selenium
-#RUN curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /chrome.deb
-#RUN dpkg -i /chrome.deb || apt-get install -yf
-#RUN rm /chrome.deb
-
-# Install chromedriver for Selenium
-#RUN curl https://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip -o /usr/local/bin/chromedriver
-#RUN chmod +x /usr/local/bin/chromedriver
-
-# Install OpenJDK-8
-RUN apk update && \
-    apk add -y openjdk-11-jdk && \
-    apk add -y ant && \
-    apk clean;
-    
-# Fix certificate issues
-RUN apk update && \
-    apk add ca-certificates-java && \
-    apk clean && \
-    update-ca-certificates -f;
-
-# Setup JAVA_HOME -- useful for docker commandline
-ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64/
-RUN export JAVA_HOME 
-
-#maven
-RUN apk add maven -y;
+RUN wget http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz && \
+  tar -zxvf apache-maven-$MAVEN_VERSION-bin.tar.gz && \
+  rm apache-maven-$MAVEN_VERSION-bin.tar.gz && \
+  mv apache-maven-$MAVEN_VERSION /usr/lib/mvn
 
 WORKDIR /app
 
