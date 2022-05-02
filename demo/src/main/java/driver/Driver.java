@@ -66,9 +66,9 @@ public final class Driver {
                 WebDriverManager.chromedriver().setup();
                 // System.setProperty("webdriver.chrome.driver",
                 // FrameworkConstants.getChromedriverpath());
-                ChromeOptions options = new ChromeOptions();
-                options.setHeadless(true);
-                driver = new ChromeDriver(options);
+                //ChromeOptions options = new ChromeOptions();
+                //options.setHeadless(true);
+                driver = new ChromeDriver();
                 break;
 
             case "firefox":

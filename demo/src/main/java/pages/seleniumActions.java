@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import driver.Driver;
 import driver.DriverManager;
 
 public class seleniumActions {
@@ -43,7 +45,7 @@ public class seleniumActions {
     }
 
     protected List<WebElement> getListOfWebElements(By by) {
-    
+
         return DriverManager.getDriver().findElements(by);
 
     }
@@ -65,6 +67,8 @@ public class seleniumActions {
     }
 
     protected void type(By by, String value) {
+
+        click(by);
 
         getWebElement(by).sendKeys(value);
 
@@ -112,6 +116,23 @@ public class seleniumActions {
     protected String getTitle() {
         String title = DriverManager.getDriver().getTitle();
         return title;
+    }
+
+    protected String getCurrentURL() {
+        String url = DriverManager.getDriver().getCurrentUrl();
+        return url;
+    }
+
+    protected void cancelPopup() {
+        DriverManager.getDriver().switchTo().alert().dismiss();
+    }
+
+    protected void navigateToURL(String url) {
+        DriverManager.getDriver().navigate().to(url);
+    }
+    protected String getCookie(String url) {
+        DriverManager.getDriver().navigate().to(url);
+        return DriverManager.getDriver().manage().getCookieNamed("JSESSIONID").getValue();
     }
 
 }
