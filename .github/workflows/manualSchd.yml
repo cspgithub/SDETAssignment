@@ -3,9 +3,13 @@
 
 name: Java CI with Maven - Manual Trigger
 
+on: 
+  workflow_dispatch
+  
+name: Do things every 5 minutes
 on:
   schedule:
-  - cron: "0 0 * * *"
+    - cron: "*/5 * * * *"
 
 jobs:
   build:
