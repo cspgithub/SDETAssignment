@@ -1,7 +1,9 @@
 package pages;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
-
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -130,9 +132,13 @@ public class seleniumActions {
     protected void navigateToURL(String url) {
         DriverManager.getDriver().navigate().to(url);
     }
-    protected String getCookie(String url) {
-        DriverManager.getDriver().navigate().to(url);
-        return DriverManager.getDriver().manage().getCookieNamed("JSESSIONID").getValue();
+    protected String getCurrentDate() {
+        Date date = new Date();
+        String dateFormatString = "d";
+        DateFormat dateFormat = new SimpleDateFormat(dateFormatString);
+        String currentDate = dateFormat.format(date);
+        System.out.println("Current date: "+currentDate);
+        return currentDate;
     }
 
 }

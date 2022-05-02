@@ -5,7 +5,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Objects;
+import java.util.Set;
 
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -66,8 +68,8 @@ public final class Driver {
                 WebDriverManager.chromedriver().setup();
                 // System.setProperty("webdriver.chrome.driver",
                 // FrameworkConstants.getChromedriverpath());
-                //ChromeOptions options = new ChromeOptions();
-                //options.setHeadless(true);
+                // ChromeOptions options = new ChromeOptions();
+                // options.setHeadless(true);
                 driver = new ChromeDriver();
                 break;
 
@@ -84,6 +86,14 @@ public final class Driver {
         DriverManager.getDriver().manage().deleteAllCookies();
         DriverManager.getDriver().manage().window().maximize();
         DriverManager.getDriver().get(configReader.getValue("url"));
+        /* Set<Cookie> cook = DriverManager.getDriver().manage().getCookies();
+        for (Cookie cookie : cook) {
+            System.out.println(cookie.getName() + ": " + cookie.getValue());
+
+        } */
+        Cookie cookie = new Cookie("stsservicecookie", "estsfd");
+        DriverManager.getDriver().manage().addCookie(cookie);
+
         DriverManager.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
     }
@@ -120,7 +130,7 @@ public final class Driver {
                 break;
         }
         capability.setPlatform(Platform.ANY);
-        System.out.println("remote url is :  "+ configReader.getValue("remoteurl").trim());
+        System.out.println("remote url is :  " + configReader.getValue("remoteurl").trim());
         driver = new RemoteWebDriver(new URL(configReader.getValue("remoteurl").trim()), capability);
         DriverManager.setDriver(driver);
         DriverManager.getDriver().manage().deleteAllCookies();

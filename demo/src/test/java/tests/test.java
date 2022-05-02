@@ -17,8 +17,7 @@ public class test extends baseTest {
     login login = new login();
     String actualURL = login.loginisLoaded("chandrashekhar_pande@hcl.com", "Hcl@2022$");
     assertEquals("https://www.myhcl.com/bprhome/Home/Index", actualURL);
-  //  String o= login.actionOnDashboard("iTime","https://www.myhcl.com/bprhome/Home/Index");
-   // System.out.println(o);
+    login.enterHour("https://wf24.myhcl.com/TSMS/login.aspx");
 
   }
 

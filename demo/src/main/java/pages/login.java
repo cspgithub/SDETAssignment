@@ -17,7 +17,14 @@ public class login extends seleniumActions {
 
     By numberOfAccount = By.xpath("//div[@id='tilesHolder']//div[@role='listitem']");
 
-    By searchTextBox = By.cssSelector("input[name='searchtext']");
+    By datesVisible = By.xpath("//div[@class='it-enterList hdalign']/div");
+
+    By inputBoxBalnk = By.xpath(
+            "//div[@class='it-enterList hdalign']/div/following::div[@class='it-enterList pannel-body'][1]//div[@style='background-color: rgb(255, 255, 255);']//input");
+    private static List<WebElement> listOfdates;
+
+    private static int index;
+    private static String currentDate;
 
     public String loginisLoaded(String emailValue, String password) {
 
@@ -33,34 +40,30 @@ public class login extends seleniumActions {
 
         return getCurrentURL();
 
-        /*
-         * List<WebElement> accounts = getListOfWebElements(numberOfAccount);
-         * for (WebElement account : accounts) {
-         * if (account.getText().trim().equalsIgnoreCase(emailValue)) {
-         * account.click();
-         * //wait for microsoft activation
-         * sleep(1000);
-         * //jsClick(donotShowCheckbox);
-         * click(submitbtn);
-         * break;
-         * }
-         * 
-         * }
-         */
+    }
+
+    public void enterHour(String url) {
+
+        sleep(1000);
+        navigateToURL(url);
+        sleep(1000);
+        type(inputBoxBalnk, "9");
 
     }
 
-    public String actionOnDashboard(String searchText, String url) {
+    public int findIndexOfdate() {
+        currentDate = getCurrentDate();
+        listOfdates = getListOfWebElements(datesVisible);
+        int listsize = listOfdates.size();
+        for (index = 0; index < listsize; index++) {
+            System.out.println(listOfdates.get(index).getText());
+            if (listOfdates.get(index).getText().equalsIgnoreCase(currentDate)) {
+                System.out.println(index + "=index of curremt date");
+                break;
+            }
 
-        /*
-         * type(searchTextBox, searchText);
-         * sleep(1000);
-         * getWebElement(searchTextBox).sendKeys(Keys.ARROW_DOWN);
-         * getWebElement(searchTextBox).sendKeys(Keys.ENTER);
-         */
-        sleep(1000);
-        return getCookie(url);
-        // navigateToURL(url);
+        }
+        return index;
 
     }
 
