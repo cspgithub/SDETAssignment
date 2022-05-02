@@ -1,4 +1,5 @@
-FROM ubuntu:latest
+#FROM ubuntu:latest
+FROM alpine:3.14
 
 # Install required dependencies
 RUN apt-get update
