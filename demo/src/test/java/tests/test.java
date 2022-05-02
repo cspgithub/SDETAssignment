@@ -1,28 +1,22 @@
 package tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+
+
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 import org.testng.annotations.Test;
 
-import pages.homepage;
-import pages.productPage;
+import pages.brokenlinks;
+
 
 public class test extends baseTest {
 
   @Test
-  public void verifyAboutThisItemForProduct() {
+  public void verifyAboutThisItemForProduct() throws MalformedURLException, IOException {
 
-    homepage homepage = new homepage();
-    assertTrue(homepage.clickHamburgerMenuOnHomePage().isProductPageLoaded());
-
-    productPage productPage = new productPage();
-    String actualText= productPage.filterProductsByPriceHighToLow()
-        .getSecondHighestPrice()
-        .openSecondHighestPriceProductDeatilsPage().getActualVerficationText();
-
-    assertEquals("About this item", actualText);
-    productPage.printAllAboutThisContent();
+    brokenlinks brokenlinks = new brokenlinks();
+    brokenlinks.a();
 
   }
 
