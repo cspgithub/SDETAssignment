@@ -8,14 +8,13 @@ import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import driver.Driver;
 import driver.DriverManager;
 
 public class seleniumActions {
@@ -76,6 +75,14 @@ public class seleniumActions {
 
     }
 
+    protected void type(WebElement el, String value) {
+        // click
+        // sendkeys
+        el.click();
+        el.sendKeys(value);
+
+    }
+
     protected void selctValuesFromDropdown(By parentBy, String value) {
 
         Select objSelect = new Select(getWebElement(parentBy));
@@ -132,12 +139,13 @@ public class seleniumActions {
     protected void navigateToURL(String url) {
         DriverManager.getDriver().navigate().to(url);
     }
+
     protected String getCurrentDate() {
         Date date = new Date();
         String dateFormatString = "d";
         DateFormat dateFormat = new SimpleDateFormat(dateFormatString);
         String currentDate = dateFormat.format(date);
-        System.out.println("Current date: "+currentDate);
+        System.out.println("Current date: " + currentDate);
         return currentDate;
     }
 

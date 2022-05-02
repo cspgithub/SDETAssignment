@@ -3,7 +3,7 @@ package pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+
 import org.openqa.selenium.WebElement;
 
 public class login extends seleniumActions {
@@ -42,12 +42,16 @@ public class login extends seleniumActions {
 
     }
 
-    public void enterHour(String url) {
+    public void markattendance(String url) {
 
         sleep(1000);
         navigateToURL(url);
         sleep(1000);
-        type(inputBoxBalnk, "9");
+
+        List<WebElement> listofInput = getListOfWebElements(inputBoxBalnk);
+        for (WebElement input : listofInput) {
+            type(input, "9");
+        }
 
     }
 
