@@ -1,5 +1,4 @@
 FROM azul/zulu-openjdk-alpine:11
-LABEL maintainer "Tim Brust <github@timbrust.de>"
 
 ARG REFRESHED_AT
 ENV REFRESHED_AT $REFRESHED_AT
