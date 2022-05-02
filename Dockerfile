@@ -2,8 +2,8 @@ FROM openjdk:11
 FROM maven:alpine
 
 WORKDIR /app
-ADD pom.xml /app
-RUN  mvn -f demo/pom.xml clean compile
+ADD . /app
+RUN  mvn verify clean --fail-never
 
 COPY . /app
 
