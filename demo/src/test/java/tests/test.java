@@ -12,7 +12,7 @@ import pages.login;
 public class test extends baseTest {
 
   @Test
-  public void verifyLogin() throws MalformedURLException, IOException {
+  public void verifyAttendance() throws MalformedURLException, IOException {
 
     login login = new login();
     String actualURL = login.loginisLoaded("chandrashekhar_pande@hcl.com", "Hcl@2022$");

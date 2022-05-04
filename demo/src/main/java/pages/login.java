@@ -21,6 +21,11 @@ public class login extends seleniumActions {
 
     By inputBoxBalnk = By.xpath(
             "//div[@class='it-enterList hdalign']/div/following::div[@class='it-enterList pannel-body'][1]//div[@style='background-color: rgb(255, 255, 255);']//input");
+
+    By submitForApprovalButton = By.xpath("//button[@class='btn primary-button'] [@id='le_apply']");
+
+    // variables
+
     private static List<WebElement> listOfdates;
 
     private static int index;
@@ -49,10 +54,17 @@ public class login extends seleniumActions {
         sleep(1000);
 
         List<WebElement> listofInput = getListOfWebElements(inputBoxBalnk);
-        for (WebElement input : listofInput) {
-            type(input, "9");
-        }
+        if (listofInput.size() > 0) {
+            for (WebElement input : listofInput) {
+                if (isWebElementDisplayed(input)) {
+                    type(input, "9");
+                    jsClick(submitForApprovalButton);
+                }
+            }
 
+        } else {
+            System.out.println("attendance has been already marked or its holiday");
+        }
     }
 
     public int findIndexOfdate() {

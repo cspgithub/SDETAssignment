@@ -82,6 +82,10 @@ public class seleniumActions {
         el.sendKeys(value);
 
     }
+    protected boolean isWebElementDisplayed(WebElement el) {
+        return el.isDisplayed();
+
+    }
 
     protected void selctValuesFromDropdown(By parentBy, String value) {
 
