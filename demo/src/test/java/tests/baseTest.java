@@ -4,8 +4,6 @@ import org.testng.annotations.AfterMethod;
 
 import org.testng.annotations.BeforeMethod;
 
-import org.testng.annotations.Parameters;
-
 import driver.Driver;
 
 public class baseTest {
@@ -14,11 +12,11 @@ public class baseTest {
 
   }
 
-  @Parameters("browser")
+  // @Parameters("browser")
   @BeforeMethod
-  protected void startBrowser(String browser) throws Exception {
+  protected void startBrowser() throws Exception {
     try {
-      Driver.initDriver(browser);
+      Driver.initDriver();
     } catch (Exception e) {
       // closeBrowser();
     }

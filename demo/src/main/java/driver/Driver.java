@@ -6,7 +6,6 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.Objects;
 
-
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
@@ -26,12 +25,21 @@ public final class Driver {
 
     private static WebDriver driver;
     private static execution executionType;
+    private static String browser;
 
     private Driver() {
 
     }
 
-    public static void initDriver(String browser) throws Exception {
+    public static String getBrowser() throws Exception {
+        browser = configReader.getValue("browser");
+        return browser;
+
+    }
+
+    public static void initDriver() throws Exception {
+
+        browser = getBrowser();
 
         if (Objects.isNull(DriverManager.getDriver())) {
             try {
@@ -86,11 +94,13 @@ public final class Driver {
         DriverManager.getDriver().manage().deleteAllCookies();
         DriverManager.getDriver().manage().window().maximize();
         DriverManager.getDriver().get(configReader.getValue("url"));
-        /* Set<Cookie> cook = DriverManager.getDriver().manage().getCookies();
-        for (Cookie cookie : cook) {
-            System.out.println(cookie.getName() + ": " + cookie.getValue());
-
-        } */
+        /*
+         * Set<Cookie> cook = DriverManager.getDriver().manage().getCookies();
+         * for (Cookie cookie : cook) {
+         * System.out.println(cookie.getName() + ": " + cookie.getValue());
+         * 
+         * }
+         */
         Cookie cookie = new Cookie("stsservicecookie", "estsfd");
         DriverManager.getDriver().manage().addCookie(cookie);
 

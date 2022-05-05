@@ -58,7 +58,7 @@ public class login extends seleniumActions {
             for (WebElement input : listofInput) {
                 if (isWebElementDisplayed(input)) {
                     type(input, "9");
-                    jsClick(submitForApprovalButton);
+                   //jsClick(submitForApprovalButton);
                 }
             }
 
