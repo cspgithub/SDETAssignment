@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 
 import org.openqa.selenium.WebElement;
 
+import reports.reportLogger;
+
 public class login extends seleniumActions {
 
     By emailTextbox = By.cssSelector("input[type='email']");
@@ -19,10 +21,14 @@ public class login extends seleniumActions {
 
     By datesVisible = By.xpath("//div[@class='it-enterList hdalign']/div");
 
-    By inputBoxBalnk = By.xpath(
+    By inputBoxBlank = By.xpath(
             "//div[@class='it-enterList hdalign']/div/following::div[@class='it-enterList pannel-body'][1]//div[@style='background-color: rgb(255, 255, 255);']//input");
 
-    By submitForApprovalButton = By.xpath("//button[@class='btn primary-button'] [@id='le_apply']");
+    By saveButton = By.cssSelector("span[class='glb-btn le_calendar'] button[data-original-title='Save']");
+    By saveSuccesMessage = By.xpath("//*[@id='CustomMsg']");
+    By pendingState = By.xpath("//div[@title='Pending with Employee']/input");
+    By markAttendaceButton = By
+            .cssSelector("span[class='glb-btn le_calendar'] button[data-original-title='Submit For Approval']");
 
     // variables
 
@@ -30,6 +36,7 @@ public class login extends seleniumActions {
 
     private static int index;
     private static String currentDate;
+    // private static String actualMessage;
 
     public String loginisLoaded(String emailValue, String password) {
 
@@ -48,23 +55,40 @@ public class login extends seleniumActions {
     }
 
     public void markattendance(String url) {
-
-        sleep(1000);
         navigateToURL(url);
-        sleep(1000);
-
-        List<WebElement> listofInput = getListOfWebElements(inputBoxBalnk);
-        if (listofInput.size() > 0) {
+        List<WebElement> listofInput = getListOfWebElements(inputBoxBlank);
+        int size = listofInput.size();
+        if (size >= 1) {
             for (WebElement input : listofInput) {
-                if (isWebElementDisplayed(input)) {
-                    type(input, "9");
-                   //jsClick(submitForApprovalButton);
-                }
+                clearAndType(input, "09:00");
+                sleep(600);
             }
+            jsClick(saveButton);
 
         } else {
-            System.out.println("attendance has been already marked or its holiday");
+
+            reportLogger.info("attendance has been already marked or its holiday or you have missed the attendance");
+
         }
+    }
+
+    public void checkPendingStatusAndSubmitHours(String url) {
+        navigateToURL(url);
+        List<WebElement> pendingList = getListOfWebElements(pendingState);
+        int size = pendingList.size();
+        if (size > 0) {
+            for (int i = 0; i < size; i++) {
+                sleep(600);
+                jsClick(markAttendaceButton);
+
+            }
+            reportLogger.info("sucessfully submitted hours");
+        }
+
+        else {
+            reportLogger.info("no pending attendce everything is marked!!");
+        }
+
     }
 
     public int findIndexOfdate() {

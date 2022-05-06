@@ -5,11 +5,13 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 import org.openqa.selenium.By;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -22,6 +24,7 @@ public class seleniumActions {
     String parentTabhandel;
     Set<String> allhandles;
     String newTabhandle;
+    WebDriverWait wait;
 
     protected void sleep(int sleep) {
 
@@ -33,7 +36,7 @@ public class seleniumActions {
     }
 
     protected WebElement getWebElement(By by) {
-        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(45));
+        wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(45));
         return wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
@@ -42,6 +45,24 @@ public class seleniumActions {
         JavascriptExecutor executor = (JavascriptExecutor) DriverManager.getDriver();
         executor.executeScript("arguments[0].scrollIntoView(true);",
                 getWebElement(by));
+
+    }
+
+    protected boolean waitForElementToDisappear(By by) {
+        try {
+            while (true) {
+                try {
+                    if (getWebElement(by).isDisplayed()) {
+                        sleep(500);
+                    }
+                } catch (NoSuchElementException e) {
+                    break;
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
 
     }
 
@@ -68,20 +89,23 @@ public class seleniumActions {
     }
 
     protected void type(By by, String value) {
-
         click(by);
-
         getWebElement(by).sendKeys(value);
 
     }
 
-    protected void type(WebElement el, String value) {
-        // click
-        // sendkeys
-        el.click();
+    protected void clearAndType(WebElement el, String value) {
+        el.clear();
         el.sendKeys(value);
 
     }
+
+    protected void clearWebField(WebElement element) {
+        while (!element.getAttribute("value").equals("")) {
+            element.sendKeys(Keys.BACK_SPACE);
+        }
+    }
+
     protected boolean isWebElementDisplayed(WebElement el) {
         return el.isDisplayed();
 
@@ -95,10 +119,8 @@ public class seleniumActions {
     }
 
     protected void jsClick(By by) {
-
         JavascriptExecutor executor = (JavascriptExecutor) DriverManager.getDriver();
-        // executor.executeScript("arguments[0].scrollIntoView(true);",
-        // getWebElement(by));
+        executor.executeScript("arguments[0].scrollIntoView(true);", getWebElement(by));
         executor.executeScript("arguments[0].click();", getWebElement(by));
 
     }
@@ -151,6 +173,10 @@ public class seleniumActions {
         String currentDate = dateFormat.format(date);
         System.out.println("Current date: " + currentDate);
         return currentDate;
+    }
+
+    protected String getText(By by) {
+        return getWebElement(by).getText();
     }
 
 }
