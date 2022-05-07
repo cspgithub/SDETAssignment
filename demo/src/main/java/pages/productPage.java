@@ -77,7 +77,7 @@ public class productPage extends seleniumActions {
 
         }
         // finding 2nd largest price from pricelist
-        pricelist=genericUtility.removeNullFromList(pricelist);
+       // pricelist=genericUtility.removeNullFromList(pricelist);
         int[] array = pricelist.stream().mapToInt(i -> i).toArray();// converting arraylist to array
         int total = array.length;
         Arrays.sort(array);
