@@ -16,6 +16,7 @@ public final class reportLogger {
         // private to avoid initialization
     }
 
+    
     public static void pass(String message) {
         reportManager.getExtTest().pass(MarkupHelper.createLabel(message, ExtentColor.GREEN));
     }

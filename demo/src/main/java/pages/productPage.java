@@ -7,6 +7,11 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import enums.loggerType;
+import reports.frameworkLogger;
+
+import static reports.frameworkLogger.*;
+
 public class productPage extends seleniumActions {
 
     By section = By.xpath(
@@ -41,7 +46,7 @@ public class productPage extends seleniumActions {
     private static int secondlargestprceValue;
 
     public boolean isProductPageLoaded() {
-       return  isWebElementDisplayed(section);
+        return isWebElementDisplayed(section);
     }
 
     public productPage filterProductsByPriceHighToLow() {
@@ -64,13 +69,15 @@ public class productPage extends seleniumActions {
         pricelist = new ArrayList<>();// storing all price as int
 
         for (WebElement webElement : pricelistWebElements) {
+            //log(loggerType.INFO, webElement.getText());
             pricelist.add(Integer.parseInt(webElement.getText().toString().replace(",", "")));
         }
         // finding 2nd largest price from pricelist
-        int[] array = pricelist.stream().mapToInt(i -> i).toArray();//converting arraylist to array
+        int[] array = pricelist.stream().mapToInt(i -> i).toArray();// converting arraylist to array
         int total = array.length;
         Arrays.sort(array);
-        secondlargestprceValue = array[total - 2];//after sorting in ascending order it will give 2nd index item which is 2nd higest price
+        secondlargestprceValue = array[total - 2];// after sorting in ascending order it will give 2nd index item which
+        //log(loggerType.INFO, String.valueOf(secondlargestprceValue)); // is 2nd higest price
         return this;
 
     }
@@ -99,16 +106,15 @@ public class productPage extends seleniumActions {
 
     }
 
-    public List<String> printAllAboutThisContent() {
+    public void printAllAboutThisContent() {
 
         List<WebElement> abtContent = getListOfWebElements(aboutThisItemContent);
-        List<String> actualContent = new ArrayList<>();
-        for (WebElement webElement : abtContent) {
-            actualContent.add(webElement.getText());
+
+        for (WebElement el : abtContent) {
+            String a = el.getText();
+            log(loggerType.EXTENTREPORTANDCONSOLE, a);
 
         }
-
-        return actualContent;
 
     }
 
