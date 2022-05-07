@@ -33,9 +33,17 @@ RUN export JAVA_HOME
 #maven
 RUN apt-get install maven -y;
 
-WORKDIR /app
+#WORKDIR /app
 
-ADD . /app
+#ADD . /app
+
+WORKDIR /usr/src/app
+ 
+ADD pom.xml /usr/src/app
+RUN mvn dependency:resolve -Dmaven.test.skip=true
+ 
+ADD . /usr/src/app
+RUN mvn clean install -Dmaven.test.skip=true
 
 CMD  mvn -f demo/pom.xml clean test
 
