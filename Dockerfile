@@ -19,7 +19,7 @@ RUN apt-get update && \
     apt-get install -y openjdk-11-jdk && \
     apt-get install -y ant && \
     apt-get clean;
-    
+
 # Fix certificate issues
 RUN apt-get update && \
     apt-get install ca-certificates-java && \
@@ -38,11 +38,11 @@ RUN apt-get install maven -y;
 #ADD . /app
 
 WORKDIR /app
- 
-ADD . /app
-RUN mvn clean package -Dmaven.test.skip=true
 
-CMD  mvn -f demo/pom.xml clean test
+ADD . /app
+CMD mvn clean package -Dmaven.test.skip=true
+
+#CMD  mvn -f demo/pom.xml clean test
 
 
 
