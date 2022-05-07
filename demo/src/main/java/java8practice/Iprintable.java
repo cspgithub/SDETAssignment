@@ -1,8 +1,8 @@
 package java8practice;
 
 @FunctionalInterface
-public interface Iprintable {
+public interface Iprintable<T> {
 
-    boolean print123(String a);
+    boolean print123(T a);
 
 }
