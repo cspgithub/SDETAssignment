@@ -17,7 +17,7 @@ public class genericUtility {
             String a = itr.next().toString();
             frameworkLogger.log(loggerType.EXTENTREPORTANDCONSOLE, a);
 
-            if (itr.next() == null || itr.next().toString().length() <= 0) {
+            if (itr.next().toString().length() <= 0) {
 
                 itr.remove();
             }
