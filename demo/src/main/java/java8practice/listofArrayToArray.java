@@ -17,7 +17,7 @@ public class listofArrayToArray {
 
         int[] a = list.stream().mapToInt(i -> i).toArray();
         int total = a.length;
-        System.out.println(total);
+       // System.out.println(total);
         Arrays.sort(a);
         int highest2nd = a[total-2];
         System.out.println(highest2nd);
