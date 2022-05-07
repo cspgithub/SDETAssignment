@@ -67,7 +67,7 @@ public class productPage extends seleniumActions {
     public productPage getSecondHighestPrice() {
 
         pricelistWebElements = getListOfWebElements(priceOfProduct);// storing all webelements -price
-        pricelistWebElements = genericUtility.removeNullFromList(pricelistWebElements);
+        //pricelistWebElements = genericUtility.removeNullFromList(pricelistWebElements);
         pricelist = new ArrayList<>();// storing all price as int
 
         for (WebElement webElement : pricelistWebElements) {
@@ -77,6 +77,7 @@ public class productPage extends seleniumActions {
 
         }
         // finding 2nd largest price from pricelist
+        pricelist=genericUtility.removeNullFromList(pricelist);
         int[] array = pricelist.stream().mapToInt(i -> i).toArray();// converting arraylist to array
         int total = array.length;
         Arrays.sort(array);
