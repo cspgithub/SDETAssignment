@@ -101,6 +101,7 @@ public final class Driver {
                 options.addArguments("--headless");
                 options.addArguments("--disable-gpu");
                 options.addArguments("--remote-debugin-port=9222");
+                options.addArguments("--window-size=1920,1080");
                 System.out.println(options.getBrowserName());
 
                 capability.merge(options);
