@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import enums.loggerType;
+import reports.frameworkLogger;
 import utilities.genericUtility;
 
 import static reports.frameworkLogger.*;
@@ -73,6 +74,7 @@ public class productPage extends seleniumActions {
         for (WebElement webElement : pricelistWebElements) {
             // log(loggerType.INFO, webElement.getText());
             int price = Integer.parseInt(webElement.getText().toString().replace(",", ""));
+            frameworkLogger.log(loggerType.EXTENTREPORTANDCONSOLE, String.valueOf(price));
             pricelist.add(price);
 
         }
