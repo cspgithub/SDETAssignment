@@ -120,7 +120,7 @@ public final class Driver {
                 break;
         }
         capability.setPlatform(Platform.ANY);
-        System.out.println("remote url is :  "+ configReader.getValue("remoteurl").trim());
+        System.out.println("remote url is :  " + configReader.getValue("remoteurl").trim());
         driver = new RemoteWebDriver(new URL(configReader.getValue("remoteurl").trim()), capability);
         DriverManager.setDriver(driver);
         DriverManager.getDriver().manage().deleteAllCookies();

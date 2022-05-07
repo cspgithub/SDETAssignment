@@ -2,13 +2,14 @@ package pages;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import enums.loggerType;
-import reports.frameworkLogger;
+import utilities.genericUtility;
 
 import static reports.frameworkLogger.*;
 
@@ -17,8 +18,8 @@ public class productPage extends seleniumActions {
     By section = By.xpath(
             "//div[@class='a-section a-spacing-none apb-browse-refinements']//div[@class='a-section a-spacing-small']/span[text()='Brands']");// brand
 
-    By sectionItemCheckbox = By.cssSelector(
-            "[id=s-refinements] > div:nth-child(17) > ul > li:nth-child(4) > span > a > div > label > i");
+    By sectionItemCheckbox = By.xpath(
+            "//span[text()='Brands']/../following-sibling::ul/li//span[text()='Samsung']/preceding-sibling::div//input");
     By dropDownSelectForFilter = By.xpath(
             "//div[@class='a-section a-spacing-small a-spacing-top-small a-text-right']/form[@class='aok-inline-block a-spacing-none']//select[@class='a-native-dropdown a-declarative']");// Samsung
 
@@ -66,18 +67,22 @@ public class productPage extends seleniumActions {
     public productPage getSecondHighestPrice() {
 
         pricelistWebElements = getListOfWebElements(priceOfProduct);// storing all webelements -price
+        pricelistWebElements= genericUtility.removeNullFromList(pricelistWebElements);
         pricelist = new ArrayList<>();// storing all price as int
 
         for (WebElement webElement : pricelistWebElements) {
             //log(loggerType.INFO, webElement.getText());
-            pricelist.add(Integer.parseInt(webElement.getText().toString().replace(",", "")));
+            int price = Integer.parseInt(webElement.getText().toString().replace(",", ""));
+            pricelist.add(price);
+
         }
         // finding 2nd largest price from pricelist
         int[] array = pricelist.stream().mapToInt(i -> i).toArray();// converting arraylist to array
         int total = array.length;
         Arrays.sort(array);
         secondlargestprceValue = array[total - 2];// after sorting in ascending order it will give 2nd index item which
-        //log(loggerType.INFO, String.valueOf(secondlargestprceValue)); // is 2nd higest price
+        //log(loggerType.INFO, String.valueOf(secondlargestprceValue)); // is 2nd
+        // higest price
         return this;
 
     }
@@ -109,12 +114,13 @@ public class productPage extends seleniumActions {
     public void printAllAboutThisContent() {
 
         List<WebElement> abtContent = getListOfWebElements(aboutThisItemContent);
+        String AboutThisProductDetail = "";
 
         for (WebElement el : abtContent) {
-            String a = el.getText();
-            log(loggerType.EXTENTREPORTANDCONSOLE, a);
+            AboutThisProductDetail += el.getText();
 
         }
+        log(loggerType.EXTENTREPORTANDCONSOLE, AboutThisProductDetail);
 
     }
 
