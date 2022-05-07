@@ -40,9 +40,10 @@ RUN apt-get install maven -y;
 WORKDIR /app
 
 ADD . /app
-CMD mvn clean package -Dmaven.test.skip=true
+#RUN mvn dependency:resolve -Dmaven.test.skip=true
+#CMD mvn clean package -Dmaven.test.skip=true
 
-#CMD  mvn -f demo/pom.xml clean test
+CMD  mvn -f demo/pom.xml clean test
 
 
 
