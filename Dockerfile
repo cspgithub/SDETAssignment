@@ -42,7 +42,7 @@ WORKDIR /app
 ADD demo/pom.xml demo/pom.xml/app
 RUN mvn dependency:resolve -Dmaven.test.skip=true
  
-ADD . /usr/src/app
+ADD . /app
 RUN mvn clean install -Dmaven.test.skip=true
 
 CMD  mvn -f demo/pom.xml clean test
