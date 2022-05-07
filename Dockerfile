@@ -39,7 +39,7 @@ RUN apt-get install maven -y;
 
 WORKDIR /app
  
-ADD demo/pom.xml demo/pom.xml/app
+ADD pom.xml demo/pom.xml/app
 RUN mvn dependency:resolve -Dmaven.test.skip=true
  
 ADD . /app
