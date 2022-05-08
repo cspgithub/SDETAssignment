@@ -11,6 +11,7 @@
         <classes>
 
             <class name="tests.test"/>
+            <class name="tests.test1"/>
 
         </classes>
     </test>
