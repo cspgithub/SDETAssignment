@@ -1,13 +1,9 @@
 package tests;
 
-import static org.junit.Assert.assertEquals;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
 
 import org.testng.annotations.Test;
 
-import pages.login;
+
 
 public class test extends baseTest {
 
