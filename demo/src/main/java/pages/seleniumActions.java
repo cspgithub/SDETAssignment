@@ -113,5 +113,9 @@ public class seleniumActions {
         String title = DriverManager.getDriver().getTitle();
         return title;
     }
+    protected String getURL() {
+        String url = DriverManager.getDriver().getCurrentUrl();
+        return url;
+    }
 
 }

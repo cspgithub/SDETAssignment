@@ -84,7 +84,11 @@ public class productPage extends seleniumActions {
         // pricelist=genericUtility.removeNullFromList(pricelist);
         pricelist = genericUtility.removeDuplicateFromList(pricelist);
         int[] array = pricelist.stream().mapToInt(i -> i).toArray();// converting arraylist to array
-        frameworkLogger.log(loggerType.EXTENTREPORTANDCONSOLE, String.valueOf(array));
+        for (int j : array) {
+            frameworkLogger.log(loggerType.EXTENTREPORTANDCONSOLE, String.valueOf(j));
+            
+        }
+      
         int total = array.length;
         Arrays.sort(array);
         secondlargestprceValue = array[total - 2];// after sorting in ascending order it will give 2nd index item which
@@ -111,6 +115,7 @@ public class productPage extends seleniumActions {
 
         if (!getTitle().matches(secondHighestPriceproductName)) {
             switchToNewTab();
+            frameworkLogger.log(loggerType.EXTENTREPORTANDCONSOLE, getURL());
             scrollToWebElement(aboutThisItem);
             actualVerficationtext = getWebElement(aboutThisItem).getText().trim();
         }
