@@ -10,7 +10,6 @@ import org.openqa.selenium.WebElement;
 
 import enums.loggerType;
 import reports.frameworkLogger;
-import utilities.genericUtility;
 
 import static reports.frameworkLogger.*;
 
@@ -69,31 +68,16 @@ public class productPage extends seleniumActions {
     public productPage getSecondHighestPrice() {
 
         pricelistWebElements = getListOfWebElements(priceOfProduct);// storing all webelements -price
-
-        // pricelistWebElements =
-        // genericUtility.removeNullFromList(pricelistWebElements);
         pricelist = new ArrayList<>();// storing all price as int
-
         for (WebElement webElement : pricelistWebElements) {
-            // log(loggerType.INFO, webElement.getText());
             int price = Integer.parseInt(webElement.getText().toString().replace(",", ""));
-
             pricelist.add(price);
-
         }
-        // finding 2nd largest price from pricelist
-        // pricelist=genericUtility.removeNullFromList(pricelist);
-        pricelist = genericUtility.removeDuplicateFromList(pricelist);
         int[] array = pricelist.stream().mapToInt(i -> i).toArray();// converting arraylist to array
-        for (int j : array) {
-            frameworkLogger.log(loggerType.EXTENTREPORTANDCONSOLE, String.valueOf(j));
-            
-        }
-      
         int total = array.length;
         Arrays.sort(array);
         secondlargestprceValue = array[total - 2];// after sorting in ascending order it will give 2nd index item which
-        log(loggerType.INFO, String.valueOf(secondlargestprceValue)); // is 2nd
+        log(loggerType.INFO, "desired item : ---" + String.valueOf(secondlargestprceValue)); // is 2nd
         // higest price
         return this;
 
@@ -116,7 +100,7 @@ public class productPage extends seleniumActions {
 
         if (!getTitle().matches(secondHighestPriceproductName)) {
             switchToNewTab();
-            
+
             scrollToWebElement(aboutThisItem);
             actualVerficationtext = getWebElement(aboutThisItem).getText().trim();
         }
