@@ -2,6 +2,7 @@ package utilities;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import enums.loggerType;
 import reports.frameworkLogger;
@@ -24,6 +25,14 @@ public class genericUtility {
 
         }
         return list;
+
+    }
+    public static <T> List<T> removeDuplicateFromList(List<T> list) {
+
+        List<T> deduped = list.stream().distinct().collect(Collectors.toList());
+        return deduped;
+
+       
 
     }
 

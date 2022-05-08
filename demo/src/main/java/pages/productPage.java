@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 
 import enums.loggerType;
 import reports.frameworkLogger;
-
+import utilities.genericUtility;
 
 import static reports.frameworkLogger.*;
 
@@ -68,6 +68,7 @@ public class productPage extends seleniumActions {
     public productPage getSecondHighestPrice() {
 
         pricelistWebElements = getListOfWebElements(priceOfProduct);// storing all webelements -price
+        pricelistWebElements = genericUtility.removeDuplicateFromList(pricelistWebElements);
         //pricelistWebElements = genericUtility.removeNullFromList(pricelistWebElements);
         pricelist = new ArrayList<>();// storing all price as int
 
