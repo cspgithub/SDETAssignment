@@ -170,20 +170,8 @@ public final class Driver {
 
     }
 
-    public static void setUpDocker() throws IOException, InterruptedException, Exception {
-        if (configReader.getValue("executionmode").equalsIgnoreCase("remote")) {
-            Runtime runtime = Runtime.getRuntime();
-            runtime.exec("cmd /c start dockerUp.bat");
-            Thread.sleep(90000);
+    
 
-        }
-
-    }
-
-    public static void closeDocker() throws IOException {
-        Runtime runtime = Runtime.getRuntime();
-        runtime.exec("cmd /c start dockerClose.bat");
-        runtime.exec("taskkill /f /im cmd.exe");
-    }
+   
 
 }
