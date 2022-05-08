@@ -1,5 +1,8 @@
 #FROM azul/zulu-openjdk-alpine:11
 FROM adoptopenjdk/maven-openjdk11
+WORKDIR /app
+ADD . /app
+CMD  mvn -f demo/pom.xml clean test
 
 #ARG REFRESHED_AT
 #ENV REFRESHED_AT $REFRESHED_AT
@@ -25,11 +28,7 @@ FROM adoptopenjdk/maven-openjdk11
 #ENV MAVEN_HOME /usr/share/maven
 #ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 
-WORKDIR /app
 
-ADD . /app
-
-CMD  mvn -f demo/pom.xml clean test
 
 
 
