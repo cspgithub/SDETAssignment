@@ -59,6 +59,7 @@ public class productPage extends seleniumActions {
 
             selctValuesFromDropdown(dropDownSelectForFilter, "price-desc-rank");
             sleep(2000);
+            frameworkLogger.log(loggerType.EXTENTREPORTANDCONSOLE, getURL());
 
         }
         return this;
@@ -115,7 +116,7 @@ public class productPage extends seleniumActions {
 
         if (!getTitle().matches(secondHighestPriceproductName)) {
             switchToNewTab();
-            frameworkLogger.log(loggerType.EXTENTREPORTANDCONSOLE, getURL());
+            
             scrollToWebElement(aboutThisItem);
             actualVerficationtext = getWebElement(aboutThisItem).getText().trim();
         }
