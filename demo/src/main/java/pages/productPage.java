@@ -76,7 +76,7 @@ public class productPage extends seleniumActions {
         for (WebElement webElement : pricelistWebElements) {
             // log(loggerType.INFO, webElement.getText());
             int price = Integer.parseInt(webElement.getText().toString().replace(",", ""));
-            frameworkLogger.log(loggerType.EXTENTREPORTANDCONSOLE, String.valueOf(price));
+
             pricelist.add(price);
 
         }
@@ -84,10 +84,11 @@ public class productPage extends seleniumActions {
         // pricelist=genericUtility.removeNullFromList(pricelist);
         pricelist = genericUtility.removeDuplicateFromList(pricelist);
         int[] array = pricelist.stream().mapToInt(i -> i).toArray();// converting arraylist to array
+        frameworkLogger.log(loggerType.EXTENTREPORTANDCONSOLE, String.valueOf(array));
         int total = array.length;
         Arrays.sort(array);
         secondlargestprceValue = array[total - 2];// after sorting in ascending order it will give 2nd index item which
-        // log(loggerType.INFO, String.valueOf(secondlargestprceValue)); // is 2nd
+        log(loggerType.INFO, String.valueOf(secondlargestprceValue)); // is 2nd
         // higest price
         return this;
 
