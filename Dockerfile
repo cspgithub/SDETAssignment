@@ -2,6 +2,8 @@
 FROM adoptopenjdk/maven-openjdk11
 WORKDIR /app
 ADD . /app
+# fetch all dependencies@@
+RUN mvn dependency:go-offline -B
 CMD  mvn -f demo/pom.xml clean test
 
 #ARG REFRESHED_AT
