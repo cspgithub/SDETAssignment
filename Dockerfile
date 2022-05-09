@@ -3,7 +3,7 @@ FROM adoptopenjdk/maven-openjdk11
 WORKDIR /app
 ADD . /app
 # fetch all dependencies@@
-COPY ./pom.xml ./pom.xml
+COPY ./pom.xml .
 RUN mvn dependency:go-offline -B
 CMD  mvn -f demo/pom.xml clean test
 
