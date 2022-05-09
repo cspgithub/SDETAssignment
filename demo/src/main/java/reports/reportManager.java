@@ -2,7 +2,7 @@ package reports;
 
 import com.aventstack.extentreports.ExtentTest;
 
-public class reportManager {
+public final class reportManager {
 
 
     private reportManager() {}
@@ -10,16 +10,16 @@ public class reportManager {
 	public static ThreadLocal<ExtentTest> exTest= new ThreadLocal<ExtentTest>();
 	
 
-	static ExtentTest getExtTest() {//accseble to only packages
+	public static ExtentTest getExtTest() {//accseble to only packages
 		return exTest.get();
 	}
 
-	static void setExtentTest(ExtentTest test) {
+	public static void setExtentTest(ExtentTest test) {
 		exTest.set(test);
 	}
 
 	
-	static void unloadExtentTest(ExtentTest test) {
+	public static void unloadExtentTest(ExtentTest test) {
 		exTest.remove();
 	}
     

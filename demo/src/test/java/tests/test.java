@@ -1,23 +1,25 @@
 package tests;
 
-
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
+import enums.loggerType;
+import frameworkLogger.frameworkLog;
+import pages.login;
 
 public class test extends baseTest {
 
   @Test
   public void verifyAttendance() {
 
-    System.out.println("test parralel");
+    frameworkLog.log(loggerType.EXTENTREPORTANDCONSOLE, "HCL Attendsnce tescase");
 
-   /*  login login = new login();
+    login login = new login();
     String actualURL = login.loginisLoaded("chandrashekhar_pande@hcl.com", "Hcl@2022$");
-    assertEquals("https://www.myhcl.com/bprhome/Home/Index", actualURL);
+    Assert.assertEquals("https://www.myhcl.com/bprhome/Home/Index", actualURL);
     login
         .markattendance("https://wf24.myhcl.com/TSMS/login.aspx");
-    login.checkPendingStatusAndSubmitHours("https://wf24.myhcl.com/TSMS/login.aspx"); */
+    login.checkPendingStatusAndSubmitHours("https://wf24.myhcl.com/TSMS/login.aspx"); 
 
   }
 

@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 
 import org.openqa.selenium.WebElement;
 
+import enums.loggerType;
+import frameworkLogger.frameworkLog;
 import reports.reportLogger;
 
 public class login extends seleniumActions {
@@ -67,8 +69,7 @@ public class login extends seleniumActions {
 
         } else {
 
-            reportLogger.info("attendance has been already marked or its holiday or you have missed the attendance");
-
+            frameworkLog.log(loggerType.EXTENTREPORTANDCONSOLE, "attendance has been already marked or its holiday or you have missed the attendance");
         }
     }
 
