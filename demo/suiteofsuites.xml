@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="suite of suites" parallel="methods" thread-count="20">
+    <listeners>
+		<listener class-name="listeners.reportListener" />
+	</listeners>
+    <suite-files>
+        <suite-file path="testSuite1.xml" />
+        <suite-file path="testSuite2.xml" />
+    </suite-files>
+</suite>

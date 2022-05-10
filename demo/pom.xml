@@ -77,10 +77,19 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M3</version>
                 <configuration>
-                    <!-- testng xml files for test execution -->
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>suiteofsuites.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <properties>
+                        <property>
+                            <name>suitethreadpoolsize</name>
+                            <value>2</value>
+                        </property>
+                    </properties>
+                    <!-- testng xml files for test execution -->
+                    <!-- <suiteXmlFiles>
+                        <suiteXmlFile>suiteofsuites.xml</suiteXmlFile>
+                    </suiteXmlFiles> -->
                     <forkCount>0</forkCount>
                 </configuration>
             </plugin>

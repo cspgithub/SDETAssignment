@@ -1,12 +1,12 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="Suite1" verbose="1" thread-count="4" parallel="methods">
+<suite name="Suite1" verbose="1" parallel="true">
 
    <listeners>
 		<listener class-name="listeners.reportListener" />
 	</listeners>
 
-    <test name="ChromeTest">
+    <test name="ChromeTest-testSuite1">
        <!--  <parameter name="browser" value="chrome"/> -->
         <classes>
 

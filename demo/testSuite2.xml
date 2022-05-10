@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite2" verbose="1" parallel="true">
+
+   <listeners>
+		<listener class-name="listeners.reportListener" />
+	</listeners>
+
+    <test name="ChromeTest-testSuit2">
+       <!--  <parameter name="browser" value="chrome"/> -->
+        <classes>
+
+            <class name="tests.test2"/>
+    
+        </classes>
+    </test>
+</suite>
