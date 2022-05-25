@@ -13,6 +13,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -170,6 +171,16 @@ public class seleniumActions {
 
     protected void navigateToURL(String url) {
         DriverManager.getDriver().navigate().to(url);
+    }
+
+    protected void scrollInto(By by) {
+        Actions ac = new Actions(DriverManager.getDriver());
+        //ac.moveToElement(getWebElement(by)).build().perform();
+        ac.sendKeys(Keys.ARROW_DOWN).build().perform();
+    }
+    protected void enterusingActionClass(By by) {
+        Actions ac = new Actions(DriverManager.getDriver());
+        ac.sendKeys(Keys.ENTER).perform();
     }
 
     protected String getCurrentDate() {

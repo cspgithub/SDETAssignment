@@ -2,8 +2,7 @@ package tests;
 
 import org.testng.annotations.Test;
 
-import enums.loggerType;
-import frameworkLogger.frameworkLog;
+
 
 public class test1 extends baseTest {
 
