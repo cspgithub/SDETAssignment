@@ -4,11 +4,7 @@ package pages;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import io.reactivex.rxjava3.functions.Action;
 
 public class dropdownFlipkart extends seleniumActions {
 
