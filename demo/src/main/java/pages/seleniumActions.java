@@ -36,7 +36,7 @@ public class seleniumActions {
     }
 
     protected WebElement getWebElement(By by) {
-        wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(45));
+        wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
@@ -116,6 +116,12 @@ public class seleniumActions {
         Select objSelect = new Select(getWebElement(parentBy));
         objSelect.selectByValue(value);
 
+    }
+
+    protected void scrollToElement(By by) throws Exception {
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].scrollIntoViewIfNeeded()",
+                getWebElement(by));
+        sleep(500);
     }
 
     protected void jsClick(By by) {

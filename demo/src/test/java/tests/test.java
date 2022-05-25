@@ -9,10 +9,10 @@ import pages.login;
 
 public class test extends baseTest {
 
-  @Test
+  @Test(groups={"Group1"})
   public void verifyAttendance() {
 
-    frameworkLog.log(loggerType.EXTENTREPORTANDCONSOLE, "1");
+    frameworkLog.log(loggerType.EXTENTREPORTANDCONSOLE, "group1");
 
     /* login login = new login();
     String actualURL = login.loginisLoaded("chandrashekhar_pande@hcl.com", "Hcl@2022$");

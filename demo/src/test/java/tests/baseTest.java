@@ -13,7 +13,7 @@ public class baseTest {
   }
 
   // @Parameters("browser")
-  @BeforeMethod
+  @BeforeMethod(groups={"Group1", "Group2", "Group3", "Group4"})
   protected void startBrowser() throws Exception {
     try {
       Driver.initDriver();
@@ -23,7 +23,7 @@ public class baseTest {
 
   }
 
-  @AfterMethod
+  @AfterMethod(groups={"Group1", "Group2", "Group3", "Group4"})
   protected void closeBrowser() {
     Driver.closeDriver();
   }

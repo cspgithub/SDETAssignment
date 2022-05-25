@@ -43,7 +43,7 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.9.9</version>
-            
+
         </dependency>
 
         <dependency>
@@ -78,8 +78,9 @@
                 <version>3.0.0-M3</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>suiteofsuites.xml</suiteXmlFile>
+                        <suiteXmlFile>testSuite2.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <groups>${groups}</groups>
                     <properties>
                         <property>
                             <name>suitethreadpoolsize</name>
@@ -87,10 +88,11 @@
                         </property>
                     </properties>
                     <!-- testng xml files for test execution -->
-                    <!-- <suiteXmlFiles>
+                    <!--   <suiteXmlFiles>
                         <suiteXmlFile>suiteofsuites.xml</suiteXmlFile>
                     </suiteXmlFiles> -->
-                    <forkCount>0</forkCount>
+                    <!--  <forkCount>0</forkCount> -->
+
                 </configuration>
             </plugin>
         </plugins>
